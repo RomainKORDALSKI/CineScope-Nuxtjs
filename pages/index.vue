@@ -8,13 +8,12 @@
         class="px-2 py-1 border border-gray-800 rounded-md min-w-64"
         type="text"
         v-model="searchTerm"
-        placeholder="Search..."
+        placeholder="Chercher un film ..."
       />
     </div>
     <div
       class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 self-center gap-x-10 gap-y-10 mb-10"
     >
-      <!-- Display the movie results -->
       <MovieCard
         :movie="movie"
         v-for="movie in data?.results"
@@ -39,6 +38,4 @@ const url = computed(() => {
 const { data, error } = await useFetch<ApiResponse>(url);
 </script>
 
-<style>
-/* Add your styles here */
-</style>
+<style></style>
