@@ -8,13 +8,13 @@
       />
       <div class="flex flex-col col-span-3">
         <div class="text-4xl font-sans font-bold mb-5">
-          " {{ data?.title }} "
+          {{ data?.title }}
         </div>
         <div class="flex">
           <div
             class="px-4 py-2 bg-gray-200 text-gray-800 rounded-full mr-2 mb-2"
             v-for="genre in data?.genres"
-            v-bind:key="genre.id"
+            :key="genre.id"
           >
             {{ genre.name }}
           </div>
@@ -30,11 +30,19 @@
 </template>
 
 <script setup lang="ts">
-/* __placeholder__ */
 import type { Movie } from '~/types/Movie';
 
 const route = useRoute();
 const config = useRuntimeConfig();
 const movieId = computed(() => route.params.id);
-const { data } = await useFetch<Movie>(`/api/movies/${movieId.value}`);
+const data = ref<Movie | null>(null);
+
+const fetchMovieDetails = async () => {
+  const { data: fetchedData } = await useFetch<Movie>(
+    `/api/movies/${movieId.value}`
+  );
+  data.value = fetchedData.value;
+};
+
+fetchMovieDetails();
 </script>
