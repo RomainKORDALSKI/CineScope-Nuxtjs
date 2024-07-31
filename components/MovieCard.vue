@@ -1,20 +1,20 @@
 <template>
-  <div class="h-128 w-64 border flex flex-col text-center">
-    <NuxtLink :to="`movies/${movie.id}`" class="mb-5 inline-block">
+  <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden">
+    <NuxtLink :to="`movies/${movie.id}`" class="block">
       <img
-        class="transform hover:translate-x-6 hover:-translate-y-6 delay-50 duration-100 inline-block"
+        class="w-full h-auto transition-transform transform hover:scale-105 duration-300 ease-in-out"
         :src="getPosterPath(movie.poster_path)"
         alt="Movie Poster"
       />
     </NuxtLink>
-    <div class="text-lg">
-      {{ movie.title }}
+    <div class="p-4">
+      <h2 class="text-xl font-semibold text-gray-800 mb-2">
+        {{ movie.title }}
+      </h2>
+      <p class="text-sm text-gray-600 truncate">
+        {{ movie.overview }}
+      </p>
     </div>
-    <p
-      class="text-m text-gray-500 break-words text-wrap truncate overflow-hidden px-2"
-    >
-      {{ movie.overview }}
-    </p>
   </div>
 </template>
 
