@@ -1,19 +1,26 @@
 <template>
-  <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden">
-    <NuxtLink :to="`movies/${movie.id}`" class="block">
+  <div
+    class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden mx-auto transform transition-transform duration-300 ease-in-out hover:scale-105"
+  >
+    <NuxtLink :to="`movies/${movie.id}`" class="block relative">
       <img
-        class="w-full h-auto transition-transform transform hover:scale-105 duration-300 ease-in-out"
+        class="w-full h-auto object-cover rounded-t-lg"
         :src="getPosterPath(movie.poster_path)"
         alt="Movie Poster"
+        loading="lazy"
       />
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-40"
+      ></div>
+      <div class="absolute inset-0 flex items-end p-4">
+        <div class="text-white">
+          <h2 class="text-lg font-semibold mb-1">{{ movie.title }}</h2>
+          <p class="text-sm">{{ movie.release_date.split('-')[0] }}</p>
+        </div>
+      </div>
     </NuxtLink>
     <div class="p-4">
-      <h2 class="text-xl font-semibold text-gray-800 mb-2">
-        {{ movie.title }}
-      </h2>
-      <p class="text-sm text-gray-600 truncate">
-        {{ movie.overview }}
-      </p>
+      <p class="text-sm text-gray-600 truncate">{{ movie.overview }}</p>
     </div>
   </div>
 </template>
